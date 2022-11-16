@@ -33,6 +33,11 @@ import systems.MusicBeat;
 import systems.ScriptedSprite;
 import systems.UIControls;
 
+// Widescreen imports
+import flixel.system.scaleModes.RatioScaleMode;
+import flixel.system.scaleModes.StageSizeScaleMode;
+import flixel.system.scaleModes.BaseScaleMode;
+
 using StringTools;
 
 typedef UnspawnNote = {
@@ -178,6 +183,36 @@ class PlayState extends MusicBeatState {
 		current = this;
 	}
 	
+        public var isWidescreen(get, set):Bool;
+    
+        private function get_isWidescreen():Bool {
+        	return Std.isOfType(FlxG.scaleMode, WideScreenScale) ? cast(FlxG.scaleMode, WideScreenScale).isWidescreen : false;
+    	}
+
+    	private function set_isWidescreen(enable:Bool):Bool
+    	{
+            if (enable == isWidescreen)
+            	return isWidescreen;
+            if (!Std.isOfType(FlxG.scaleMode, WideScreenScale))
+            	FlxG.scaleMode = new WideScreenScale();
+
+            cast(FlxG.scaleMode, WideScreenScale).isWidescreen = enable;
+
+            return enable;
+    	}
+
+    	private function get_guiSize():FlxPoint
+        {
+            if (Std.isOfType(FlxG.scaleMode, WideScreenScale))
+            {
+                return new FlxPoint(cast(FlxG.scaleMode, WideScreenScale).width, cast(FlxG.scaleMode, WideScreenScale).height);
+            }
+            else
+            {
+                return new FlxPoint(1280, 720);
+            }
+        }
+	
 	override function create()
 	{
 		super.create();
@@ -190,6 +225,8 @@ class PlayState extends MusicBeatState {
 
 		persistentUpdate = true;
 		persistentDraw = true;
+		
+		FlxG.scaleMode = new WideScreenScale();
 
 		FlxG.sound.music.stop();
 		FlxG.sound.list.add(vocals);
