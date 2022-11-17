@@ -227,6 +227,12 @@ class PlayState extends MusicBeatState {
 		persistentDraw = true;
 		
 		FlxG.scaleMode = new WideScreenScale();
+		
+		if (Settings.get("Widescreen")) {
+			isWidescreen = true;
+		} else {
+			isWidescreen = false;
+		}
 
 		FlxG.sound.music.stop();
 		FlxG.sound.list.add(vocals);
