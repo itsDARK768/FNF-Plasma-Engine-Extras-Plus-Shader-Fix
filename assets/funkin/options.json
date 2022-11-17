@@ -3,7 +3,8 @@
         ["Gameplay",    "Adjust aspects of gameplay to your liking."],
         ["Appearance",  "Adjust the appearance of certain things such as Flashing Lights or Arrow Skins."],
         ["Developers",  "Turn on developer mode or adjust how many logs can be shown."],
-        ["Controls",    "Adjust your controls for 1k up to 9k."]
+        ["Controls",    "Adjust your controls for 1k up to 9k."],
+        ["Extras", "Extra options for options such as Widescreen and Shaders"]
     ],
     "options": [
         {
@@ -247,6 +248,20 @@
             "description": "Change your keybinds for 9k.",
             "type": "KeybindMenu",
             "defaultValue": null
+        },
+        {
+            "page": "Extras",
+            "name": "Widescreen",
+            "description": "Whether the game should run with Widescreen or not",
+            "type": "Checkbox",
+            "defaultValue": false
+        },
+        {
+            "page": "Extras",
+            "name": "Shaders",
+            "description": "Wheter the game should run Shaders or not",
+            "type": "Checkbox",
+            "defaultValue": true
         }
     ]
 }
