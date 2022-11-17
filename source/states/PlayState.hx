@@ -228,11 +228,7 @@ class PlayState extends MusicBeatState {
 		
 		FlxG.scaleMode = new WideScreenScale();
 		
-		if (Settings.get("Widescreen")) {
-			isWidescreen = true;
-		} else {
-			isWidescreen = false;
-		}
+		set_isWidescreen(true); // fuck the settings, yoshi crafter engine didn't do it for such a fucking obvious reason
 
 		FlxG.sound.music.stop();
 		FlxG.sound.list.add(vocals);
